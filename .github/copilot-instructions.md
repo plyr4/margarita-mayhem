@@ -6,6 +6,8 @@ for all interactions, assume I am a skilled programmer who can handle complex id
 
 for all interactions, prefix class member variables with an underscore.
 
+for all interactions, use explicit variable types.
+
 for all interactions, DO NOT restate the question.
 
 for responses containing code, start with the code.

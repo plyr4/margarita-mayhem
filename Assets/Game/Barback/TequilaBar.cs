@@ -7,9 +7,11 @@ public class TequilaBar : MonoBehaviour
     public List<Sprite> _sprites;
     [SerializeField]
     [Range(0, 1f)]
-    private float _value;
+    public float _value;
     public SpriteRenderer _sprite;
     public float _depletionSpeed = 0.1f;
+    public Blink _outOfStockBlink;
+    public CarryableSO _emptyCarryable;
 
     private void Start()
     {
@@ -28,6 +30,21 @@ public class TequilaBar : MonoBehaviour
         _value = BarDeplete.DepleteValue(_value, _depletionSpeed);
         int spriteIndex = BarDeplete.GetDepletionSpriteIndex(_value, _sprites);
         _sprite.sprite = _sprites[spriteIndex];
+        HandleBlink();
+    }
+
+    private void HandleBlink()
+    {
+        if (!_outOfStockBlink.gameObject.activeInHierarchy && _value <= 0f)
+        {
+            _outOfStockBlink.gameObject.SetActive(true);
+            _outOfStockBlink.StartBlinking();
+        }
+
+        if (_outOfStockBlink.gameObject.activeInHierarchy && _value > 0f)
+        {
+            _outOfStockBlink.gameObject.SetActive(false);
+        }
     }
 
     private void RestockTequila(TequilaRestock tequilaRestock)
@@ -37,5 +54,10 @@ public class TequilaBar : MonoBehaviour
         {
             _value = 1f;
         }
+    }
+
+    public bool IsStocked()
+    {
+        return _value > 0f;
     }
 }

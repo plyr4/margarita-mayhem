@@ -123,7 +123,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dancer_0
+      name: dancer 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d91d947db4e43bb479b514635fd4500c
+      internalID: -1447519988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 16
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5423def2c2fb6f41bb0942c2bceb061
+      internalID: -502524471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c68f951ac8b9fa4aa429b0a99c37191
+      internalID: -1157044603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d90ec9b415877a44a93a36643851e5e8
+      internalID: 270126569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be43fb6ccbfe6bd408b6c940fd60b68a
+      internalID: -644661740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 16
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d1908f1fd1a644f9c7eb0bccb94824
+      internalID: -1296337252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d4e802680bf28c43b71dbea24f1bb98
-      internalID: -215284762
+      spriteID: fa3fb98cb36b3264ba0162cefb0b33c7
+      internalID: -461463672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dancer_1
+      name: dancer 1_7
       rect:
         serializedVersion: 2
         x: 8
@@ -158,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16c9165b4c2155b46aee8a75efaf0d7b
-      internalID: 766547817
+      spriteID: 512e009dbaef82949a5c3a06858c6b9d
+      internalID: -1253974713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dancer_2
+      name: dancer 1_8
       rect:
         serializedVersion: 2
         x: 16
@@ -179,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf6e2e5be08ef014ba66bb11b61f4ab2
-      internalID: -669113258
+      spriteID: a518c171fb5cbd74fb6c7492b6e4b13d
+      internalID: 1142505621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dancer_3
+      name: dancer 1_9
       rect:
         serializedVersion: 2
         x: 24
@@ -200,8 +326,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 609316a11cd500c4496fee1b93c7e19c
-      internalID: -851977006
+      spriteID: 33fd1f67e5e5576478b4165c75fd99ee
+      internalID: 1501842781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64a7d6e6679b45d45abe41e3b35e9a79
+      internalID: -400962654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dancer 1_11
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f34105c5a058f5488243d5a55490871
+      internalID: 1121620627
       vertices: []
       indices: 
       edges: []
@@ -217,10 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dancer_0: -215284762
-      dancer_1: 766547817
-      dancer_2: -669113258
-      dancer_3: -851977006
+      dancer 1_0: -1447519988
+      dancer 1_1: -502524471
+      dancer 1_10: -400962654
+      dancer 1_11: 1121620627
+      dancer 1_2: -1157044603
+      dancer 1_3: 270126569
+      dancer 1_4: -644661740
+      dancer 1_5: -1296337252
+      dancer 1_6: -461463672
+      dancer 1_7: -1253974713
+      dancer 1_8: 1142505621
+      dancer 1_9: 1501842781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

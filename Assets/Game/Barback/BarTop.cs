@@ -19,7 +19,7 @@ public class BarTop : TileMono
 
     public override bool CanMoveTo(Vector2Int moveDirection)
     {
-        if (moveDirection.y != 0)
+        if (moveDirection.y < 0)
         {
             return false;
         }
@@ -29,7 +29,7 @@ public class BarTop : TileMono
 
     public override bool CanMoveFrom(Vector2Int moveDirection)
     {
-        if (moveDirection.y != 0)
+        if (moveDirection.y > 0)
         {
             return false;
         }

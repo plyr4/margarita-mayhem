@@ -11,6 +11,9 @@ public class IceBar : MonoBehaviour
     private float _value;
     public SpriteRenderer _sprite;
     public float _depletionSpeed = 0.1f;
+    public Blink _outOfStockBlink;
+    public int _spriteIndex;
+    public CarryableSO _emptyCarryable;
 
     private void Start()
     {
@@ -27,12 +30,32 @@ public class IceBar : MonoBehaviour
     public void Update()
     {
         _value = BarDeplete.DepleteValue(_value, _depletionSpeed);
-        int spriteIndex = BarDeplete.GetDepletionSpriteIndex(_value, _sprites);
-        _sprite.sprite = _sprites[spriteIndex];
+        _spriteIndex = BarDeplete.GetDepletionSpriteIndex(_value, _sprites);
+        _sprite.sprite = _sprites[_spriteIndex];
+        HandleBlink();
     }
 
+    private void HandleBlink()
+    {
+        if (!_outOfStockBlink.gameObject.activeInHierarchy && _value <= 0f)
+        {
+            _outOfStockBlink.gameObject.SetActive(true);
+            _outOfStockBlink.StartBlinking();
+        }
+
+        if (_outOfStockBlink.gameObject.activeInHierarchy && _value > 0f)
+        {
+            _outOfStockBlink.gameObject.SetActive(false);
+        }
+    }
+    
     private void RestockIce(IceRestock iceRestock)
     {
         _value = 1f;
+    }
+
+    public bool IsStocked()
+    {
+        return _value > 0f;
     }
 }

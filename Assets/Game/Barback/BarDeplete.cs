@@ -20,20 +20,19 @@ public static class BarDeplete
     public static int GetDepletionSpriteIndex(float value, List<Sprite> sprites)
     {
         int spriteCount = sprites.Count;
-        int spriteIndex = spriteCount - 1;
-        if (spriteCount > 1)
+        if (spriteCount <= 1) return 0;
+
+        if (value <= 0f) return spriteCount - 1;
+
+        float step = 1f / (spriteCount - 1);
+        for (int i = 0; i < spriteCount - 1; i++)
         {
-            float step = 1f / (spriteCount - 1);
-            for (int i = 0; i < spriteCount; i++)
+            if (value > (spriteCount - 2 - i) * step)
             {
-                if (value >= 1f - i * step)
-                {
-                    spriteIndex = i;
-                    break;
-                }
+                return i;
             }
         }
 
-        return spriteIndex;
+        return spriteCount - 1;
     }
 }

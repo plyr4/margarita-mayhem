@@ -10,6 +10,7 @@ public class TweenOpts
     public bool _loop;
     public int _loops;
     public bool _relative;
+    public Action OnComplete;
 }
 
 public class DOTweenLocalRotate : MonoBehaviour
@@ -27,7 +28,8 @@ public class DOTweenLocalRotate : MonoBehaviour
                 RotateMode.FastBeyond360)
             .SetRelative(_opts._relative)
             .SetEase(_opts._ease)
-            .SetLoops(_opts._loop ? _opts._loops : 0);
+            .SetLoops(_opts._loop ? _opts._loops : 0)
+            .OnComplete(() => { _opts.OnComplete?.Invoke(); });
     }
 
     void OnDestroy()

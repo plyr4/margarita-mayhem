@@ -11,10 +11,9 @@ public class IceRestock : TileMono
         return _receivable;
     }
 
-    public override bool CanInteractTo(Vector2Int moveDirection)
+    public override bool CanInteractFrom(Vector2Int moveDirection)
     {
-        // restock is at the bottom of screen so the player is above it when you interact with it "from above"
-        if (moveDirection.y < 0)
+        if (moveDirection.y > 0)
         {
             return true;
         }
@@ -24,6 +23,7 @@ public class IceRestock : TileMono
 
     public override bool OnInteract(PlayerMono player, Vector2Int moveDirection)
     {
+        player.HandleDrop(moveDirection, this);
         if (player._carrying != _receivable) return false;
         OnInteractAction?.Invoke(this);
         return true;

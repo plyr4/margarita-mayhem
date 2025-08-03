@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class PlayerMono : MonoBehaviour
 
     public SpriteRenderer _spriteRenderer;
 
-     public Sprite _originalSprite;
+    public Sprite _originalSprite;
     public Sprite _carryingSprite;
 
     public SpriteRenderer _carryingSpriteRenderer;
@@ -39,6 +40,10 @@ public class PlayerMono : MonoBehaviour
 
     public CarryableSO _carrying;
 
+    public Vector2 _collisionBoxSize = new Vector2(0.5f, 0.5f);
+    private Coroutine _blinkCoroutine;
+    private bool blinking;
+
     public void Start()
     {
         _currentGridPosition = _startingGridPosition;
@@ -46,9 +51,83 @@ public class PlayerMono : MonoBehaviour
         UpdateSortingOrder();
     }
 
+    public void Update()
+    {
+        HandleInput();
+        if (_busy) return;
+        Vector2Int gridPositionLastFrame = _currentGridPosition;
+        HandleMovement(gridPositionLastFrame);
+        Vector2Int moveDirection = _currentGridPosition - gridPositionLastFrame;
+        _currentGridPosition.x =
+            Mathf.Clamp(_currentGridPosition.x, _xPadding.x, _grid64Mono._columns - 1 - _xPadding.y);
+        _currentGridPosition.y = Mathf.Clamp(_currentGridPosition.y, _yPadding.x, _grid64Mono._rows - 1 - _yPadding.y);
+        if (gridPositionLastFrame != _currentGridPosition && CanMoveTo(moveDirection, gridPositionLastFrame))
+        {
+            _targetPosition = _grid64Mono.GridPositionToWorldPosition(_currentGridPosition);
+            HandleTween(moveDirection);
+            UpdateSortingOrder();
+        }
+        else if (moveDirection != Vector2Int.zero)
+        {
+            bool interacted = false;
+            ITile tile = _grid64Mono.GetTile(_currentGridPosition);
+            if (tile != null && tile.CanInteractFrom(moveDirection))
+            {
+                interacted = tile.OnInteract(this, moveDirection);
+            }
+
+            tile = _grid64Mono.GetTile(_currentGridPosition + moveDirection);
+            if (!interacted && tile != null && tile.CanInteractTo(moveDirection))
+            {
+                interacted = tile.OnInteract(this, moveDirection);
+            }
+        }
+
+        CheckForCollisions();
+    }
+
+    private void CheckForCollisions()
+    {
+        Vector3 spritePosition = _spriteRenderer.transform.position;
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(spritePosition, _collisionBoxSize, 0);
+        foreach (Collider2D collider in colliders)
+        {
+            Dancer dancer = collider.GetComponentInParent<Dancer>();
+            if (dancer != null)
+            {
+                if (_carrying != null)
+                {
+                    DropItem();
+
+                    if (_blinkCoroutine != null)
+                    {
+                        StopCoroutine(_blinkCoroutine);
+                    }
+
+                    _blinkCoroutine = StartCoroutine(blink(0.5f, 3));
+                }
+            }
+        }
+    }
+
+    private IEnumerator blink(float duration, int blinkCount)
+    {
+        if (blinking) yield break;
+        blinking = true;
+        for (int i = 0; i < blinkCount; i++)
+        {
+            _spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(duration / (blinkCount * 2));
+            _spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(duration / (blinkCount * 2));
+        }
+
+        blinking = false;
+    }
+
     private void UpdateSortingOrder()
     {
-        if (_currentGridPosition.y == _yPadding.x)
+        if (_currentGridPosition.y == _grid64Mono._rows - 1 - _yPadding.y)
         {
             _spriteRenderer.sortingOrder = _originalSortingOrder + _behindBarSortingOrderOffset;
         }
@@ -60,15 +139,15 @@ public class PlayerMono : MonoBehaviour
 
     public bool CanMoveTo(Vector2Int moveDirection, Vector2Int gridPositionLastFrame)
     {
-        ITile tile = _grid64Mono.GetTile(_currentGridPosition);
-        if (tile != null && !tile.CanMoveTo(moveDirection))
+        ITile tile = _grid64Mono.GetTile(gridPositionLastFrame);
+        if (tile != null && !tile.CanMoveFrom(moveDirection))
         {
             _currentGridPosition = gridPositionLastFrame;
             return false;
         }
 
-        tile = _grid64Mono.GetTile(gridPositionLastFrame);
-        if (tile != null && !tile.CanMoveFrom(moveDirection))
+        tile = _grid64Mono.GetTile(_currentGridPosition);
+        if (tile != null && !tile.CanMoveTo(moveDirection))
         {
             _currentGridPosition = gridPositionLastFrame;
             return false;
@@ -150,14 +229,22 @@ public class PlayerMono : MonoBehaviour
         }
     }
 
-    private void HandleInteract(ITile tile, Vector2Int moveDirection, bool fromCurrent)
+
+    private void OnDestroy()
     {
-        bool interacted = tile.OnInteract(this, moveDirection);
-        
+        if (_tween != null)
+        {
+            _tween.Kill();
+            _tween = null;
+        }
+    }
+
+    public void HandlePickup(Vector2Int moveDirection, ITile tile)
+    {
         Vector3 pos = Vector3.Lerp(
             _grid64Mono.GridPositionToWorldPosition(_currentGridPosition),
             _grid64Mono.GridPositionToWorldPosition(_currentGridPosition + moveDirection),
-            fromCurrent ? _upInteractDistanceFactor : _downInteractDistanceFactor);
+            _upInteractDistanceFactor);
         if (_tween != null)
         {
             _tween.Kill();
@@ -167,79 +254,61 @@ public class PlayerMono : MonoBehaviour
         _tween = DOTween.Sequence();
         Tween tween = transform.DOLocalMove(
                 pos,
-                _opts._duration * (fromCurrent ? _upInteractDuration : _downInteractDuration))
+                _opts._duration * _upInteractDuration)
             .OnStart(() => { _busy = true; })
             .OnComplete(() =>
             {
-                // this wont work for glassware etc
-                // we need this to check if the thing we just interacted with is a stock or a restock
-                // then also if were already carrying something
-                if (fromCurrent && tile.GetCarryable() != null)
-                {
-                    _spriteRenderer.sprite = _carryingSprite;
-                    _carryingSpriteRenderer.gameObject.SetActive(true);
-                     _carrying = tile.GetCarryable();
-                    _carryingSpriteRenderer.sprite = _carrying.GetSprite();
-                }
-                else if (!fromCurrent)
-                {
-                    _spriteRenderer.sprite = _originalSprite;
-                     _carrying = null;
-                    _carryingSpriteRenderer.gameObject.SetActive(false);
-                }
+                _spriteRenderer.sprite = _carryingSprite;
+                _carryingSpriteRenderer.gameObject.SetActive(true);
+                _carrying = tile.GetCarryable();
+                _carryingSpriteRenderer.sprite = _carrying.GetSprite();
             })
             .SetRelative(_opts._relative)
             .SetEase(_opts._ease);
         _tween.Append(tween);
         tween = transform.DOLocalMove(
                 transform.localPosition,
-                _opts._duration * (fromCurrent ? _upInteractDuration : _downInteractDuration))
+                _opts._duration * _upInteractDuration)
             .OnComplete(() => { _busy = false; })
             .SetRelative(_opts._relative)
             .SetEase(_opts._ease);
         _tween.Append(tween);
     }
 
-    public void Update()
+    public void HandleDrop(Vector2Int moveDirection, ITile tile)
     {
-        HandleInput();
-        if (_busy) return;
-        Vector2Int gridPositionLastFrame = _currentGridPosition;
-        HandleMovement(gridPositionLastFrame);
-        Vector2Int moveDirection = _currentGridPosition - gridPositionLastFrame;
-        _currentGridPosition.x =
-            Mathf.Clamp(_currentGridPosition.x, _xPadding.x, _grid64Mono._columns - 1 - _xPadding.y);
-        _currentGridPosition.y = Mathf.Clamp(_currentGridPosition.y, _yPadding.x, _grid64Mono._rows - 1 - _yPadding.y);
-        if (gridPositionLastFrame != _currentGridPosition && CanMoveTo(moveDirection, gridPositionLastFrame))
-        {
-            _targetPosition = _grid64Mono.GridPositionToWorldPosition(_currentGridPosition);
-            HandleTween(moveDirection);
-            UpdateSortingOrder();
-        }
-        else if (moveDirection != Vector2Int.zero)
-        {
-            ITile tile = _grid64Mono.GetTile(_currentGridPosition);
-            if (tile != null && tile.CanInteractFrom(moveDirection))
-            {
-                HandleInteract(tile, moveDirection, true);
-                return;
-            }
-
-            tile = _grid64Mono.GetTile(_currentGridPosition + moveDirection);
-            if (tile != null && tile.CanInteractTo(moveDirection))
-            {
-                HandleInteract(tile, moveDirection, false);
-                return;
-            }
-        }
-    }
-
-    private void OnDestroy()
-    {
+        Vector3 pos = Vector3.Lerp(
+            _grid64Mono.GridPositionToWorldPosition(_currentGridPosition),
+            _grid64Mono.GridPositionToWorldPosition(_currentGridPosition + moveDirection),
+            _upInteractDistanceFactor);
         if (_tween != null)
         {
             _tween.Kill();
             _tween = null;
         }
+
+        _tween = DOTween.Sequence();
+        Tween tween = transform.DOLocalMove(
+                pos,
+                _opts._duration * _upInteractDuration)
+            .OnStart(() => { _busy = true; })
+            .OnComplete(() => { DropItem(); })
+            .SetRelative(_opts._relative)
+            .SetEase(_opts._ease);
+        _tween.Append(tween);
+        tween = transform.DOLocalMove(
+                transform.localPosition,
+                _opts._duration * _upInteractDuration)
+            .OnComplete(() => { _busy = false; })
+            .SetRelative(_opts._relative)
+            .SetEase(_opts._ease);
+        _tween.Append(tween);
+    }
+
+    private void DropItem()
+    {
+        _spriteRenderer.sprite = _originalSprite;
+        _carrying = null;
+        _carryingSpriteRenderer.gameObject.SetActive(false);
     }
 }
