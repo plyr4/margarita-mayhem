@@ -16,7 +16,7 @@ PlayerSettings:
   productName: barback
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0, g: 0.25490198, b: 0.44313726, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.1509434, g: 0.07402612, b: 0.040583838, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1

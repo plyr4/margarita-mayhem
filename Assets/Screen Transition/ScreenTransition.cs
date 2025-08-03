@@ -27,7 +27,7 @@ public class ScreenTransition : MonoBehaviour
     }
 
     [SerializeField]
-    private RenderType _renderType = RenderType.ImageMaterial;
+    private RenderType _renderType = RenderType.SpriteRenderer;
     [SerializeField]
     private Material _mat;
     [SerializeField]
@@ -47,6 +47,8 @@ public class ScreenTransition : MonoBehaviour
     [SerializeField]
     private GameObject _scaler;
     [SerializeField]
+    private ScreenTransitionSpriteAnimator _spriteAnimator;
+    [SerializeField]
     [ReadOnlyInspector]
     private bool _transitioning;
 
@@ -59,7 +61,8 @@ public class ScreenTransition : MonoBehaviour
     public enum RenderType
     {
         ImageMaterial,
-        Scaler
+        Scaler,
+        SpriteRenderer
     }
 
     private void Start()
@@ -77,6 +80,8 @@ public class ScreenTransition : MonoBehaviour
                 _image.material = _mat;
                 break;
             case RenderType.Scaler:
+                break;
+            case RenderType.SpriteRenderer:
                 break;
         }
     }
@@ -123,6 +128,9 @@ public class ScreenTransition : MonoBehaviour
             case RenderType.Scaler:
                 float p = Mathf.Clamp(_transitionProgress, 0f, .999f);
                 _scaler.transform.localScale = Vector3.one * (1f - p);
+                break;
+            case RenderType.SpriteRenderer:
+                _spriteAnimator.SetProgress(Mathf.Clamp(_transitionProgress, 0f, 1f));
                 break;
         }
     }

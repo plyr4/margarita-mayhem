@@ -83,9 +83,6 @@ public class GStateMachineGame : GStateMachineMono
         _howToPlay = ((GStateFactory)_stateFactory).HowToPlay();
         _howToPlayOut = ((GStateFactory)_stateFactory).HowToPlayOut();
 
-        // todo: enable game
-        return;
-
         // transitions
         at(_nan, _init, new FuncPredicate(() =>
             true

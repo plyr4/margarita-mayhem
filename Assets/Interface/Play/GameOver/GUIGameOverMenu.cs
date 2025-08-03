@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GUIPauseMenu : MonoBehaviour
+public class GUIGameOverMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject _viewParent;
@@ -14,10 +14,11 @@ public class GUIPauseMenu : MonoBehaviour
             case GStateInit _:
                 _viewParent.SetActive(false);
                 break;
-            case GStatePause _:
-                _viewParent.SetActive(true);
-                _viewParent.GetComponentInChildren<UnityEngine.UI.Button>()?.Select();
-                break;
+            // todo: add GStateGameOver
+            // case GStatePause _:
+            //     _viewParent.SetActive(true);
+            //     _viewParent.GetComponentInChildren<UnityEngine.UI.Button>()?.Select();
+            //     break;
             case GStatePlay _:
                 _viewParent.SetActive(false);
                 break;
