@@ -33,11 +33,10 @@ public static class SpriteTextWriter
             {
                 spriteText += "<sprite=39>";
             }
-            else
+            else if (c == '+')
             {
-                // ignore other characters
-                continue;
-            }
+                spriteText += "<sprite=40>";
+            } 
         }
 
         textMeshPro.text = spriteText;

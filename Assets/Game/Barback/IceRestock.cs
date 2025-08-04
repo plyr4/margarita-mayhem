@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class IceRestock : TileMono
 {
-    public Action<IceRestock> OnInteractAction;
+    public Func<IceRestock, CarryableSO, bool> OnInteractAction;
     public CarryableSO _receivable;
 
     public override CarryableSO GetReceivable()
@@ -24,8 +24,6 @@ public class IceRestock : TileMono
     public override bool OnInteract(PlayerMono player, Vector2Int moveDirection)
     {
         player.HandleDrop(moveDirection, this);
-        if (player._carrying != _receivable) return false;
-        OnInteractAction?.Invoke(this);
-        return true;
+        return OnInteractAction.Invoke(this, player._carrying);
     }
 }

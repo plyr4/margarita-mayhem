@@ -14,6 +14,8 @@ public class IceBar : MonoBehaviour
     public Blink _outOfStockBlink;
     public int _spriteIndex;
     public CarryableSO _emptyCarryable;
+    public CarryableSO _receivable;
+    public CarryableSO _glasswareCarryable;
 
     private void Start()
     {
@@ -48,10 +50,23 @@ public class IceBar : MonoBehaviour
             _outOfStockBlink.gameObject.SetActive(false);
         }
     }
-    
-    private void RestockIce(IceRestock iceRestock)
+
+    private bool RestockIce(IceRestock iceRestock, CarryableSO carryable)
     {
-        _value = 1f;
+        if (carryable == _receivable)
+        {
+            _value = 1f;
+            return true;
+        }
+        
+        if (carryable == _glasswareCarryable)
+        {
+            // broken glass ruins ice
+            _value = 0f;
+            return true;
+        }
+
+        return false;
     }
 
     public bool IsStocked()

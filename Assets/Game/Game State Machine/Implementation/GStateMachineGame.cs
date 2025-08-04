@@ -15,6 +15,7 @@ public class GStateMachineGame : GStateMachineMono
     private GStateBase _playLoad;
     private GStateBase _playIn;
     private GStateBase _play;
+    private GStateBase _tutorial;
     private GStateBase _pause;
     private GStateBase _pauseRetryIn;
     private GStateBase _pauseRetry;
@@ -74,6 +75,7 @@ public class GStateMachineGame : GStateMachineMono
         _playLoad = ((GStateFactory)_stateFactory).PlayLoad();
         _playIn = ((GStateFactory)_stateFactory).PlayIn();
         _play = ((GStateFactory)_stateFactory).Play();
+        _tutorial = ((GStateFactory)_stateFactory).Tutorial();
         _pause = ((GStateFactory)_stateFactory).Pause();
         _pauseRetryIn = ((GStateFactory)_stateFactory).PauseRetryIn();
         _pauseRetry = ((GStateFactory)_stateFactory).PauseRetry();
@@ -127,8 +129,16 @@ public class GStateMachineGame : GStateMachineMono
             _playLoad._done
         ));
 
+        at(_playIn, _tutorial, new FuncPredicate(() =>
+            _playIn._done && !_tutorial._done
+        ));
+
         at(_playIn, _play, new FuncPredicate(() =>
-            _playIn._done
+            _playIn._done && _tutorial._done
+        ));
+
+        at(_tutorial, _play, new FuncPredicate(() =>
+            _tutorial._done
         ));
 
         at(_play, _pause, new FuncPredicate(() =>
@@ -299,6 +309,11 @@ public class GStateMachineGame : GStateMachineMono
     public void HandlePlayPause()
     {
         _pause._ready = true;
+    }
+
+    public void HandleTutorialPlay()
+    {
+        _tutorial._done = true;
     }
 
     public void HandlePlayGameOver(IGameEventOpts opts)

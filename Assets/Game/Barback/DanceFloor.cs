@@ -61,6 +61,11 @@ public class DanceFloor : MonoBehaviour
         return _dancers.Count >= _maxDancers;
     }
 
+    public float Fullness()
+    {
+        return (float)_dancers.Count / _maxDancers;
+    }
+
     private void UpdateDancers()
     {
         if (_moveCoroutine != null) return;

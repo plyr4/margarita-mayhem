@@ -7,6 +7,7 @@ public class Glassware : TileMono
     public float _respawnDelay = 20f;
     public bool _autoRespawn = true;
     public bool _disabledOnStart;
+    public DanceFloor _danceFloor;
 
     public void Start()
     {
@@ -29,7 +30,16 @@ public class Glassware : TileMono
         // OnInteractAction?.Invoke(this);
         gameObject.SetActive(false);
 
-        if (_autoRespawn) player.StartCoroutine(enableAfterDelay(_respawnDelay));
+        float respawnTime = _respawnDelay;
+        if (_danceFloor != null)
+        {
+            float fullness = _danceFloor.Fullness();
+            respawnTime = _respawnDelay * (1f - fullness * 0.25f);
+        }
+
+        respawnTime += Random.Range(-1f, 1f);
+
+        if (_autoRespawn) player.StartCoroutine(enableAfterDelay(respawnTime));
         return true;
     }
 

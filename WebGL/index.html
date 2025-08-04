@@ -19,10 +19,9 @@
                 <!-- top left -->
                 <div id="title-spacer"></div>
                 <!-- center -->
-                <div id="unity-build-title">BarBack</div>
+                <div id="unity-build-title">Margarita Mayhem</div>
                 <!-- top right -->
                 <div id="unity-fullscreen-button-container">
-                    <div id="unity-fullscreen-button"></div>
                 </div>
             </div>
             <canvas id="unity-canvas"></canvas>
@@ -36,31 +35,16 @@
         </div>
         <div id="game-info">
             <div id="about">
-                <div class="header">ABOUT BarBack</div>
+                <div class="header">ABOUT Margarita Mayhem</div>
                 <div class="info">
-                    <div class="line">BarBack is a fast-paced bar management game where you control a barback,
-                        restocking supplies, serving drinks, and keeping the bar running smoothly.
+                    <div class="line">Take control of a barback, a bartender's right-hand.</div>
+                    <div class="line"> It's up to you two to keep the drinks flowing, and the party going!</div>
+                    <div class="line">Restock tequila, refill ice, and hit the dance floor in this 64x64 retro
+                        Tapper/Frogger mashup!
                     </div>
-                    <div class="line">The game features dynamic 2D visuals, a custom shader-driven look, and a focus on
-                        quick decision-making and multitasking.
-                    </div>
-                    <br/>
-                    <div class="line" id="download">> Web demo not working? Try downloading the <a
-                            href="${WINDOWS_BUILD_LINK}" target="_blank">Windows</a> <img class="sml-icon"
-                                                                                          src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/>
-                        copy! (or <a href="${LINUX_BUILD_LINK}" target="_blank">Linux</a> <img class="sml-icon"
-                                                                                               src="https://static-00.iconduck.com/assets.00/linux-icon-439x512-rnhe78x0.png"/>)
-                    </div>
-                    <div class="line">Check out the web demo! <a href="https://plyr4.github.io/barback/">https://plyr4.github.io/barback/</a>
-                    </div>
-                    <div class="line"><img src="img/barback.gif" style="max-width:100%;height:auto;"/></div>
-                    <div class="line small">Built in Unity 2022.3.25f1 for <a href="https://itch.io/jam/lowrezjam-2025">Low
-                        Rez Jam 2025</a>.
-                    </div>
-                    <div class="line">Music: <a href="https://sonic-pi.net/">Sonic Pi</a> | Art: <a
-                            href="https://www.aseprite.org/">Aseprite</a> | Animation: DOTween
-                    </div>
+                    <div class="line">Don't step on any toes!</div>
                 </div>
+                <br/>
             </div>
             <div id="controls">
                 <div class="header">CONTROLS</div>
@@ -73,30 +57,8 @@
             <div id="known-issues">
                 <div class="header">KNOWN ISSUES</div>
                 <ul>
-                    <li>Mini lava lamp sometimes not receiving light</li>
+                    <li>No sounds yet</li>
                 </ul>
-            </div>
-            <div id="build-info">
-                <div class="header">BUILD INFO</div>
-                <div class="info">
-                    <div class="labels">
-                        <span class="label">player's platform</span>
-                        <span class="label">engine</span>
-                        <span class="label">author</span>
-                        <span class="label">commit</span>
-                        <span class="label">message</span>
-                    </div>
-                    <div class="values">
-                        <div>- <span class="value" id="platform"></span></div>
-                        <div>- <span class="value">Unity 2022.3.25f1</span></div>
-                        <div>- <a class="value" href="https://github.com/plyr4" target="_blank">github.com/plyr4</a>
-                        </div>
-                        <div>- <a class="value" id="commit-link" target="_blank"
-                                  href="https://github.com/plyr4/barback/commit/${BUILD_COMMIT}">${BUILD_COMMIT}</a>
-                        </div>
-                        <div>- <span class="value">${BUILD_COMMIT_MESSAGE}</span></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -108,7 +70,6 @@
     var canvas = document.querySelector("#unity-canvas");
     var loadingBar = document.querySelector("#unity-loading-bar");
     var progressBarFull = document.querySelector("#unity-progress-bar-full");
-    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
     var warningBanner = document.querySelector("#unity-warning");
 
     // Shows a temporary message banner/ribbon for a few seconds, or
@@ -137,14 +98,14 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/barback.loader.js";
+    var loaderUrl = buildUrl + "/margarita-mayhem.loader.js";
     var config = {
-        dataUrl: buildUrl + "/barback.data",
-        frameworkUrl: buildUrl + "/barback.framework.js",
-        codeUrl: buildUrl + "/barback.wasm",
+        dataUrl: buildUrl + "/margarita-mayhem.data",
+        frameworkUrl: buildUrl + "/margarita-mayhem.framework.js",
+        codeUrl: buildUrl + "/margarita-mayhem.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "plyr4",
-        productName: "barback",
+        productName: "margarita-mayhem",
         productVersion: "${BUILD_COMMIT}",
         showBanner: unityShowBanner,
     };
@@ -163,8 +124,8 @@
                                                                        src="https://static-00.iconduck.com/assets.00/linux-icon-439x512-rnhe78x0.png"/>)</div></div>`;
     } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "1280px";
-        canvas.style.height = "720px";
+        canvas.style.width = "640px";
+        canvas.style.height = "640px";
 
         loadingBar.style.display = "block";
 
@@ -175,9 +136,6 @@
                 progressBarFull.style.width = 100 * progress + "%";
             }).then((unityInstance) => {
                 loadingBar.style.display = "none";
-                fullscreenButton.onclick = () => {
-                    unityInstance.SetFullscreen(1);
-                };
             }).catch((message) => {
                 alert(message);
             });

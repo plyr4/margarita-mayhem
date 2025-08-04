@@ -42,8 +42,8 @@ public class SoundManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.5f);
         // play theme in loop
-        _theme.loop = true;
-        InvokeRepeating(nameof(PlayTheme), 1f, _theme.clip.length + 0.5f);
+        // _theme.loop = true;
+        // InvokeRepeating(nameof(PlayTheme), 1f, _theme.clip.length + 0.5f);
         if (_whoosh != null) _whooshVolume = _whoosh.volume;
         _initialized = true;
     }

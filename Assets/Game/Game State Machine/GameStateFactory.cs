@@ -59,6 +59,11 @@ public class GStateFactory : StateFactory
         return new GStatePlay(_context, this);
     }
 
+    public GStateBase Tutorial()
+    {
+        return new GStateTutorial(_context, this);
+    }
+
     public GStateBase Pause()
     {
         return new GStatePause(_context, this);
