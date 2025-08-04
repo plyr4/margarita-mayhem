@@ -1,6 +1,8 @@
-public class GStatePlay : GStateBase
+using UnityEngine;
+
+public class GStateGameOverRetryIn : GStateBase
 {
-    public GStatePlay(StateMachineMono context, StateFactory factory) : base(context, factory)
+    public GStateGameOverRetryIn(StateMachineMono context, StateFactory factory) : base(context, factory)
     {
     }
 
@@ -9,14 +11,14 @@ public class GStatePlay : GStateBase
         base.OnEnter();
 
         if (_context == null) return;
+        
+        _done = true;
     }
-    
+
     public override void OnExit()
     {
         base.OnExit();
 
         if (_context == null) return;
-
-        ((GStateMachineGame)_context).HandlePlayResets();
     }
 }

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class BarTender : MonoBehaviour
+public class Bartender : MonoBehaviour
 {
     [SerializeField]
     private Grid64Mono _grid64Mono;
@@ -41,6 +40,7 @@ public class BarTender : MonoBehaviour
 
     public BarStock _barStock;
     public Glassware _glassware;
+    public Blink _outOfStockBlink;
 
     public void Start()
     {
@@ -107,6 +107,7 @@ public class BarTender : MonoBehaviour
         {
             float randomCarryInterval = Random.Range(_carryingIntervalSeconds, _carryingIntervalSeconds * 1.5f);
             yield return new WaitForSeconds(randomCarryInterval);
+            _outOfStockBlink.gameObject.SetActive(false);
             if (_carrying == null)
             {
                 PickupRandomCarryable();
@@ -128,6 +129,8 @@ public class BarTender : MonoBehaviour
     {
         bool makeMarg = _numCarryables % 3 == 0;
 
+        _unstockedCarryables.Clear();
+
         if (_barStock.IsStocked() && makeMarg)
         {
             _carrying = _margarita.GetCarryable();
@@ -140,11 +143,14 @@ public class BarTender : MonoBehaviour
         else if (makeMarg)
         {
             _numMissedMargaritas++;
-            _carrying = GetRandomCarryable(_unstockedCarryables);
         }
-        else
+
+        if (!_barStock.IsStocked())
         {
+            _unstockedCarryables.AddRange(_barStock.GetUnstockedCarryables());
             _carrying = GetRandomCarryable(_unstockedCarryables);
+            _outOfStockBlink.gameObject.SetActive(true);
+            _outOfStockBlink.StartBlinking();
         }
 
         _carryingSpriteRenderer.gameObject.SetActive(true);
@@ -157,8 +163,9 @@ public class BarTender : MonoBehaviour
     {
         if (_carrying == _margarita.GetCarryable() && !_margarita._margaritaReady)
         {
-            _margarita.PrepareMargarita();
+            _margarita.PrepareMargarita(this);
         }
+
         if (_carrying == _glassware.GetCarryable())
         {
             _glassware.RespawnFromBarTender(this);

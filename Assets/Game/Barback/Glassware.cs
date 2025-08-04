@@ -40,7 +40,7 @@ public class Glassware : TileMono
         gameObject.SetActive(true);
     }
 
-    public void RespawnFromBarTender(BarTender barTender)
+    public void RespawnFromBarTender(Bartender bartender)
     {
         if (gameObject.activeInHierarchy) return;
 

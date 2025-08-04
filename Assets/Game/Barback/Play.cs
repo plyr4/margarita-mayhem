@@ -6,6 +6,8 @@ public class Play : MonoBehaviour
     private bool _active;
     [SerializeField]
     private GameEvent _playPause;
+    [SerializeField]
+    private GameEvent _pausePlay;
 
     public void HandleGameStateChange(IGameEventOpts opts)
     {
@@ -38,5 +40,14 @@ public class Play : MonoBehaviour
     public void HandleOnClickEscape()
     {
         _playPause.Invoke();
+        switch (GStateMachineGame.Instance.CurrentState())
+        {
+            case GStatePause _:
+                _pausePlay.Invoke();
+                break;
+            case GStatePlay _:
+                _playPause.Invoke();
+                break;
+        }
     }
 }

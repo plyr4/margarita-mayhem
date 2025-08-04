@@ -74,11 +74,6 @@ public class GStateFactory : StateFactory
         return new GStatePauseQuit(_context, this);
     }
 
-    public GStateBase GameOver()
-    {
-        return new GStateGameOver(_context, this);
-    }
-
     public GStateBase PauseRetryIn()
     {
         return new GStatePauseRetryIn(_context, this);
@@ -122,5 +117,25 @@ public class GStateFactory : StateFactory
     public GStateBase Quit()
     {
         return new GStateQuit(_context, this);
+    }
+
+    public GStateBase GameOverIn()
+    {
+        return new GStateGameOverIn(_context, this);
+    }
+
+    public GStateBase GameOver()
+    {
+        return new GStateGameOver(_context, this);
+    }
+
+    public GStateBase GameOverRetryIn()
+    {
+        return new GStateGameOverRetryIn(_context, this);
+    }
+
+    public GStateBase GameOverRetry()
+    {
+        return new GStateGameOverRetry(_context, this);
     }
 }

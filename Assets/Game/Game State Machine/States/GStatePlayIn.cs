@@ -13,10 +13,14 @@ public class GStatePlayIn : GStateBase
         base.OnEnter();
 
         if (_context == null) return;
-        
+
         ScreenTransition.Instance.Open(0.5f);
+
+        ((GStateMachineGame)_context).HandlePauseResets();
+        ((GStateMachineGame)_context).HandleStartResets();
+        ((GStateMachineGame)_context).HandleGameOverResets();
     }
-    
+
     public override void OnExit()
     {
         base.OnExit();

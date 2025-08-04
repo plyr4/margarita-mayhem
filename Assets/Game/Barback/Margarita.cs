@@ -3,6 +3,14 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public class GameOverEventOpts : IGameEventOpts
+{
+    public Margarita _margarita;
+    public DanceFloor _danceFloor;
+    public Bartender _bartender;
+    public DishSink _dishSink;
+}
+
 public class Margarita : TileMono
 {
     private Coroutine _attractDancerCoroutine;
@@ -15,8 +23,11 @@ public class Margarita : TileMono
     private Dancer.MoveOpts _moveOpts;
     public Glassware _glassware;
     public DanceFloor _danceFloor;
+    public DishSink _dishSink;
     public CarryableSO _carryable;
     public Action<Dancer> OnConsumeMargaritaAction;
+
+    public GameEvent _playGameOverEvent;
 
     public override CarryableSO GetCarryable()
     {
@@ -65,18 +76,13 @@ public class Margarita : TileMono
         return true;
     }
 
-    public void PrepareMargarita()
+    public void PrepareMargarita(Bartender bartender)
     {
         if (_margaritaReady) return;
         _margaritaReady = true;
         _sprite.gameObject.SetActive(true);
-        if (_danceFloor.Full())
-        {
-            // todo: end day
-            return;
-        }
 
-        AttractDancer();
+        AttractDancer(bartender);
     }
 
     private void ConsumeMargarita()
@@ -91,17 +97,17 @@ public class Margarita : TileMono
         _glassware.RespawnFromMargarita(this);
     }
 
-    private void AttractDancer()
+    private void AttractDancer(Bartender bartender)
     {
         if (_attractDancerCoroutine != null)
         {
             StopCoroutine(_attractDancerCoroutine);
         }
 
-        _attractDancerCoroutine = StartCoroutine(attractDancer());
+        _attractDancerCoroutine = StartCoroutine(attractDancer(bartender));
     }
 
-    private IEnumerator attractDancer()
+    private IEnumerator attractDancer(Bartender bartender)
     {
         Vector3 worldPos = _grid64Mono.GridPositionToWorldPosition(_reservedPosition + Vector2Int.right * 3);
         GameObject dancerGO = Instantiate(_dancerPrefab,
@@ -124,7 +130,19 @@ public class Margarita : TileMono
         {
             ConsumeMargarita();
 
-            OnConsumeMargaritaAction?.Invoke(dancer);
+            if (_danceFloor.Full())
+            {
+                GameOverEventOpts gameOverOpts = new GameOverEventOpts();
+                gameOverOpts._margarita = this;
+                gameOverOpts._danceFloor = _danceFloor;
+                gameOverOpts._bartender = bartender;
+                gameOverOpts._dishSink = _dishSink;
+                _playGameOverEvent?.Invoke(gameOverOpts);
+            }
+            else
+            {
+                OnConsumeMargaritaAction?.Invoke(dancer);
+            }
         }
     }
 }

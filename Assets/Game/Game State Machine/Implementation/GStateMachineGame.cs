@@ -27,6 +27,10 @@ public class GStateMachineGame : GStateMachineMono
     private GStateBase _howToPlayIn;
     private GStateBase _howToPlayOut;
 
+    private GStateBase _gameOverIn;
+    private GStateBase _gameOver;
+    private GStateBase _gameOverRetryIn;
+    private GStateBase _gameOverRetry;
 
     public bool _unloadPlaySceneOnApplicationStart = true;
 
@@ -82,6 +86,10 @@ public class GStateMachineGame : GStateMachineMono
         _howToPlayIn = ((GStateFactory)_stateFactory).HowToPlayIn();
         _howToPlay = ((GStateFactory)_stateFactory).HowToPlay();
         _howToPlayOut = ((GStateFactory)_stateFactory).HowToPlayOut();
+        _gameOverIn = ((GStateFactory)_stateFactory).GameOverIn();
+        _gameOver = ((GStateFactory)_stateFactory).GameOver();
+        _gameOverRetryIn = ((GStateFactory)_stateFactory).GameOverRetryIn();
+        _gameOverRetry = ((GStateFactory)_stateFactory).GameOverRetry();
 
         // transitions
         at(_nan, _init, new FuncPredicate(() =>
@@ -199,6 +207,26 @@ public class GStateMachineGame : GStateMachineMono
             _howToPlayOut._done && _pause._ready
         ));
 
+        at(_play, _gameOverIn, new FuncPredicate(() =>
+            _gameOverIn._ready
+        ));
+
+        at(_gameOverIn, _gameOver, new FuncPredicate(() =>
+            _gameOverIn._done
+        ));
+
+        at(_gameOver, _gameOverRetryIn, new FuncPredicate(() =>
+            _gameOverRetryIn._ready
+        ));
+
+        at(_gameOverRetryIn, _gameOverRetry, new FuncPredicate(() =>
+            _gameOverRetryIn._done
+        ));
+
+        at(_gameOverRetry, _playIn, new FuncPredicate(() =>
+            _gameOverRetry._done
+        ));
+
         _stateMachine.SetState(_nan);
     }
 
@@ -234,6 +262,13 @@ public class GStateMachineGame : GStateMachineMono
             case GStatePauseRetryIn:
                 _pauseRetryIn._done = true;
                 break;
+            case GStateGameOverIn playGameOverEvent:
+                ((GStateGameOver)_gameOver)._opts = ((GStateGameOverIn)playGameOverEvent)._opts;
+                _gameOverIn._done = true;
+                break;
+            case GStateGameOverRetryIn:
+                _gameOverRetryIn._done = true;
+                break;
             case GStatePauseQuitIn:
                 _pauseQuitIn._done = true;
                 break;
@@ -251,6 +286,8 @@ public class GStateMachineGame : GStateMachineMono
                 break;
             case GStatePauseRetry:
                 break;
+            case GStateGameOverRetry:
+                break;
         }
     }
 
@@ -262,6 +299,18 @@ public class GStateMachineGame : GStateMachineMono
     public void HandlePlayPause()
     {
         _pause._ready = true;
+    }
+
+    public void HandlePlayGameOver(IGameEventOpts opts)
+    {
+        ((GStateGameOverIn)_gameOverIn)._opts = opts;
+        _gameOverIn._ready = true;
+    }
+
+    public void HandleGameOverRetry()
+    {
+        _gameOver._done = true;
+        _gameOverRetryIn._ready = true;
     }
 
     public void HandlePausePlay()
@@ -370,5 +419,53 @@ public class GStateMachineGame : GStateMachineMono
         _howToPlayInState = null;
 
         _howToPlayOut._done = true;
+    }
+
+    public void HandlePauseResets()
+    {
+        _pause._ready = false;
+        _pause._done = false;
+        _pauseRetryIn._ready = false;
+        _pauseRetryIn._done = false;
+        _pauseRetry._ready = false;
+        _pauseRetry._done = false;
+        _pauseQuitIn._ready = false;
+        _pauseQuitIn._done = false;
+        _pauseQuit._ready = false;
+        _pauseQuit._done = false;
+    }
+
+    public void HandleGameOverResets()
+    {
+        _gameOverIn._ready = false;
+        _gameOverIn._done = false;
+        _gameOver._ready = false;
+        _gameOver._done = false;
+        _gameOverRetryIn._ready = false;
+        _gameOverRetryIn._done = false;
+        _gameOverRetry._ready = false;
+        _gameOverRetry._done = false;
+    }
+
+    public void HandlePlayResets()
+    {
+        _playLoad._ready = false;
+        _playLoad._done = false;
+        _playIn._ready = false;
+        _playIn._done = false;
+        _play._ready = false;
+        _play._done = false;
+    }
+
+    public void HandleStartResets()
+    {
+        _startIn._ready = false;
+        _startIn._done = false;
+        _start._ready = false;
+        _start._done = false;
+        _startOutPlayIn._ready = false;
+        _startOutPlayIn._done = false;
+        _startOutQuitIn._ready = false;
+        _startOutQuitIn._done = false;
     }
 }

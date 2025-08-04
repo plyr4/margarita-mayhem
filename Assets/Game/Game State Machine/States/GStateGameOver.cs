@@ -4,6 +4,8 @@ public class GStateGameOver : GStateBase
     {
     }
 
+    public IGameEventOpts _opts;
+
     public override void OnEnter()
     {
         base.OnEnter();

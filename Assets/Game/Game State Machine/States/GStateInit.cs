@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GStateInit : GStateBase
@@ -17,6 +18,9 @@ public class GStateInit : GStateBase
 
         ScreenTransition.Instance.CloseImmediate();
         ScreenTransition.Instance.Open(0.25f);
+        
+        // set max fps to 60
+        Application.targetFrameRate = 60;
     }
 
     public override void OnExit()

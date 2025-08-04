@@ -21,4 +21,13 @@ public class GStatePauseQuit : GStateBase
         Application.Quit();
 #endif
     }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+
+        if (_context == null) return;
+
+        ((GStateMachineGame)_context).HandlePauseResets();
+    }
 }

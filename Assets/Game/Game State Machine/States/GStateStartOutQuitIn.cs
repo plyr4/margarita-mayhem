@@ -18,5 +18,7 @@ public class GStateStartOutQuitIn : GStateBase
         base.OnExit();
 
         if (_context == null) return;
+        
+        ((GStateMachineGame)_context).HandleStartResets();
     }
 }

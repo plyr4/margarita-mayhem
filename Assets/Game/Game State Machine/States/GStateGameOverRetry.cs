@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GStatePauseRetry : GStateBase
+public class GStateGameOverRetry : GStateBase
 {
-    public GStatePauseRetry(StateMachineMono context, StateFactory factory) : base(context, factory)
+    public GStateGameOverRetry(StateMachineMono context, StateFactory factory) : base(context, factory)
     {
     }
 
@@ -45,7 +45,7 @@ public class GStatePauseRetry : GStateBase
         base.OnExit();
 
         if (_context == null) return;
-
-        ((GStateMachineGame)_context).HandlePauseResets();
+        
+        ((GStateMachineGame)_context).HandleGameOverResets();
     }
 }
