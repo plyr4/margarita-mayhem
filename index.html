@@ -106,7 +106,7 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "plyr4",
         productName: "margarita-mayhem",
-        productVersion: "${BUILD_COMMIT}",
+        productVersion: "931d104",
         showBanner: unityShowBanner,
     };
 
@@ -118,8 +118,8 @@
     // config.matchWebGLToCanvasSize = false;
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        document.querySelector("#unity-container").outerHTML = `<div class="mobile">Sorry, not supported on mobile devices.<div>Try downloading the <a href="${WINDOWS_BUILD_LINK}" target="_blank">Windows version</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/>! (or the <a
-                                href="${LINUX_BUILD_LINK}"
+        document.querySelector("#unity-container").outerHTML = `<div class="mobile">Sorry, not supported on mobile devices.<div>Try downloading the <a href="https://github.com/plyr4/unity-build-factory/releases/download/plyr4/barback-StandaloneWindows64/margarita-mayhem-StandaloneWindows64.zip" target="_blank">Windows version</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/>! (or the <a
+                                href="https://github.com/plyr4/unity-build-factory/releases/download/plyr4/barback-StandaloneLinux64/margarita-mayhem-StandaloneLinux64.zip"
                                 target="_blank">Linux version</a> <img class="sml-icon"
                                                                        src="https://static-00.iconduck.com/assets.00/linux-icon-439x512-rnhe78x0.png"/>)</div></div>`;
     } else {
@@ -142,8 +142,8 @@
         };
         document.body.appendChild(script);
     }
-    var warning = `<div><div class="warning-windows">Web demo not working? Try downloading the <a href="${WINDOWS_BUILD_LINK}" target="_blank">Windows</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/> copy! (or <a
-                                href="${LINUX_BUILD_LINK}"
+    var warning = `<div><div class="warning-windows">Web demo not working? Try downloading the <a href="https://github.com/plyr4/unity-build-factory/releases/download/plyr4/barback-StandaloneWindows64/margarita-mayhem-StandaloneWindows64.zip" target="_blank">Windows</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/> copy! (or <a
+                                href="https://github.com/plyr4/unity-build-factory/releases/download/plyr4/barback-StandaloneLinux64/margarita-mayhem-StandaloneLinux64.zip"
                                 target="_blank">Linux</a> <img class="sml-icon" src="https://static-00.iconduck.com/assets.00/linux-icon-439x512-rnhe78x0.png"/>)</div></div><div class="gh-link"><a href="https://github.com/plyr4" target="_blank">plyr4<img src="https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"/></a></div>`;
     document.querySelector("#warning-banner").innerHTML = warning;
     document.querySelector("#platform").innerHTML = navigator.userAgent;
