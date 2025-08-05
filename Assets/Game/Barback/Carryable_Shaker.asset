@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04690004e2ca4acbb7f9a6f59aa3e794, type: 3}
   m_Name: Carryable_Shaker
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 0c340481ea9a33c45ae3f2bc66a1465c, type: 3}
+  _sprite: {fileID: 21300000, guid: b6df2a025bd7b3241a8158dd0a1235c1, type: 3}

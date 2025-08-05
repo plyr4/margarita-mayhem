@@ -106,11 +106,14 @@ public class GStateMachineGame : GStateMachineMono
             _startIn._done
         ));
 
-        at(_start, _startOutPlayIn, new FuncPredicate(() =>
-                _startOutPlayIn._ready
 #if UNITY_EDITOR
-                || _skipStartInEditMode
+        at(_start, _startOutPlayIn, new FuncPredicate(() =>
+            _skipStartInEditMode
+        ));
 #endif
+
+        at(_start, _startOutPlayIn, new FuncPredicate(() =>
+            _startOutPlayIn._ready
         ));
 
         at(_startOutPlayIn, _playLoad, new FuncPredicate(() =>
@@ -129,17 +132,18 @@ public class GStateMachineGame : GStateMachineMono
             _playLoad._done
         ));
 
-        at(_playIn, _tutorial, new FuncPredicate(() =>
-            _playIn._done && !_tutorial._done
-        ));
+        // at(_playIn, _tutorial, new FuncPredicate(() =>
+        //     _playIn._done && !_tutorial._done
+        // ));
 
         at(_playIn, _play, new FuncPredicate(() =>
-            _playIn._done && _tutorial._done
+                _playIn._done
+            // _playIn._done && _tutorial._done
         ));
 
-        at(_tutorial, _play, new FuncPredicate(() =>
-            _tutorial._done
-        ));
+        // at(_tutorial, _play, new FuncPredicate(() =>
+        //     _tutorial._done
+        // ));
 
         at(_play, _pause, new FuncPredicate(() =>
             _pause._ready

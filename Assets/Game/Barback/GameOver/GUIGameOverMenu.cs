@@ -6,6 +6,17 @@ public class GUIGameOverMenu : MonoBehaviour
     [SerializeField]
     private GameObject _viewParent;
     public TextMeshPro _text;
+    public GameEvent _gameOverRetryEvent;
+    public float _cooldownTime = 0.5f;
+    private bool _cooldown;
+
+    private void Update()
+    {
+        if (GameInput.Instance._menuContinuePressed || GameInput.Instance._menuSubmitPressed)
+        {
+            GameOverRetryHandleOnClick();
+        }
+    }
 
     public void HandleGameStateChange(IGameEventOpts opts)
     {
@@ -35,5 +46,21 @@ public class GUIGameOverMenu : MonoBehaviour
                 _viewParent.SetActive(false);
                 break;
         }
+    }
+
+    private void resetCooldown()
+    {
+        _cooldown = false;
+    }
+
+    public void GameOverRetryHandleOnClick()
+    {
+        if (_cooldown)
+            return;
+
+        _cooldown = true;
+        Invoke(nameof(resetCooldown), _cooldownTime);
+
+        _gameOverRetryEvent.Invoke();
     }
 }

@@ -61,6 +61,8 @@ public class GameInput : MonoBehaviour
         _playerInput.onActionTriggered += OnJump;
         _playerInput.onActionTriggered += OnMenuBack;
         _playerInput.onActionTriggered += OnBuildMenu;
+        _playerInput.onActionTriggered += OnMenuContinue;
+        _playerInput.onActionTriggered += OnMenuSubmit;
 
         _playerInput.onActionTriggered += OnHorizontalMoveHeatSource;
         _playerInput.onActionTriggered += OnVerticalMoveHeatSourceLeft;
@@ -124,6 +126,22 @@ public class GameInput : MonoBehaviour
         }
 
         _buildMenuReleased = false;
+
+        _menuContinuePressed = false;
+        if (_menuContinueReleased)
+        {
+            _menuContinueHeld = false;
+        }
+
+        _menuContinueReleased = false;
+
+        _menuSubmitPressed = false;
+        if (_menuSubmitReleased)
+        {
+            _menuSubmitHeld = false;
+        }
+
+        _menuSubmitReleased = false;
     }
 
     public void OnControlsChanged(PlayerInput playerInput)
@@ -216,6 +234,36 @@ public class GameInput : MonoBehaviour
         _menuBackHeld = context.action.WasPressedThisFrame();
 
         _menuBackReleased = context.action.WasReleasedThisFrame();
+    }
+
+    public bool _menuContinuePressed;
+    public bool _menuContinueHeld;
+    public bool _menuContinueReleased;
+
+    public void OnMenuContinue(InputAction.CallbackContext context)
+    {
+        if (context.action.name != "MenuContinue") return;
+
+        _menuContinuePressed = context.action.WasPressedThisFrame();
+
+        _menuContinueHeld = context.action.WasPressedThisFrame();
+
+        _menuContinueReleased = context.action.WasReleasedThisFrame();
+    }
+
+    public bool _menuSubmitPressed;
+    public bool _menuSubmitHeld;
+    public bool _menuSubmitReleased;
+
+    public void OnMenuSubmit(InputAction.CallbackContext context)
+    {
+        if (context.action.name != "MenuSubmit") return;
+
+        _menuSubmitPressed = context.action.WasPressedThisFrame();
+
+        _menuSubmitHeld = context.action.WasPressedThisFrame();
+
+        _menuSubmitReleased = context.action.WasReleasedThisFrame();
     }
 
     public bool _buildMenuPressed;
