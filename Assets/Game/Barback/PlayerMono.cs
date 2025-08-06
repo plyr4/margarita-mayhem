@@ -55,6 +55,14 @@ public class PlayerMono : MonoBehaviour
     {
         HandleInput();
         if (_busy) return;
+        switch (GStateMachineGame.Instance.CurrentState())
+        {
+            case GStatePlay _:
+                break;
+            default:
+                return;
+        }
+
         Vector2Int gridPositionLastFrame = _currentGridPosition;
         HandleMovement(gridPositionLastFrame);
         Vector2Int moveDirection = _currentGridPosition - gridPositionLastFrame;

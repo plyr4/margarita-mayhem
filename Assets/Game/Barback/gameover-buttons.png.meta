@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1f2e08cf7eab1446a945855941e5492
+guid: 60823df46814ca5429d3570848923ded
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,85 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tutorial-menu-buttons_0
+      name: gameover-buttons_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 6
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1e46423b143e840a03f54faa0f90e1
-      internalID: 441452816
+      spriteID: b91f2bb8e1b1689469a68e47b4ea92f2
+      internalID: 765401940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_1
+      name: gameover-buttons_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 64
         height: 64
-      alignment: 6
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5afc9abb000f75e49bca24ccb87bcb62
-      internalID: -574704689
+      spriteID: ffae882a976dabc499edd21a96af9c9a
+      internalID: -2095430730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_2
+      name: gameover-buttons_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 64
         height: 64
-      alignment: 6
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f9b963adf72ec040923fafd13af0552
-      internalID: -1321767072
+      spriteID: b94317686702ccc4595d471f8fa44d10
+      internalID: 403666168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_3
+      name: gameover-buttons_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 64
         height: 64
-      alignment: 6
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5de2d19ad27da740a4885ac9f9612a7
-      internalID: 1743325608
+      spriteID: 34b1c0c42666007479462ccc652d37a1
+      internalID: 1742282632
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tutorial-menu-buttons_0: 441452816
-      tutorial-menu-buttons_1: -574704689
-      tutorial-menu-buttons_2: -1321767072
-      tutorial-menu-buttons_3: 1743325608
+      gameover-buttons_0: 765401940
+      gameover-buttons_1: -2095430730
+      gameover-buttons_2: 403666168
+      gameover-buttons_3: 1742282632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -109,6 +109,14 @@ public class Margarita : TileMono
 
     private IEnumerator attractDancer(Bartender bartender)
     {
+        switch (GStateMachineGame.Instance.CurrentState())
+        {
+            case GStatePlay _:
+                break;
+            default:
+                yield break;
+        }
+
         Vector3 worldPos = _grid64Mono.GridPositionToWorldPosition(_reservedPosition + Vector2Int.right * 3);
         GameObject dancerGO = Instantiate(_dancerPrefab,
             worldPos, Quaternion.identity, _danceFloor.transform);
@@ -130,7 +138,15 @@ public class Margarita : TileMono
         {
             ConsumeMargarita();
 
-            if (_danceFloor.Full())
+            bool full = _danceFloor.Full();
+#if UNITY_EDITOR
+            if (GStateMachineGame.Instance._fullDanceFloorInEditMode)
+            {
+                full = true;
+            }
+#endif
+
+            if (full)
             {
                 GameOverEventOpts gameOverOpts = new GameOverEventOpts();
                 gameOverOpts._margarita = this;

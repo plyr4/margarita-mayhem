@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GStateMachineGame : GStateMachineMono
 {
@@ -34,6 +35,7 @@ public class GStateMachineGame : GStateMachineMono
     private GStateBase _gameOverRetry;
 
     public bool _unloadPlaySceneOnApplicationStart = true;
+    public bool _fullDanceFloorInEditMode = false;
 
     public static GStateMachineGame Instance
     {
@@ -276,10 +278,6 @@ public class GStateMachineGame : GStateMachineMono
             case GStatePauseRetryIn:
                 _pauseRetryIn._done = true;
                 break;
-            case GStateGameOverIn playGameOverEvent:
-                ((GStateGameOver)_gameOver)._opts = ((GStateGameOverIn)playGameOverEvent)._opts;
-                _gameOverIn._done = true;
-                break;
             case GStateGameOverRetryIn:
                 _gameOverRetryIn._done = true;
                 break;
@@ -324,6 +322,11 @@ public class GStateMachineGame : GStateMachineMono
     {
         ((GStateGameOverIn)_gameOverIn)._opts = opts;
         _gameOverIn._ready = true;
+    }
+
+    public void HandlePlayGameOverInDone(IGameEventOpts opts)
+    {
+        _gameOverIn._done = true;
     }
 
     public void HandleGameOverRetry()
@@ -396,7 +399,6 @@ public class GStateMachineGame : GStateMachineMono
 
         _settingsOut._done = true;
     }
-
 
     public void HandleHowToPlayIn()
     {

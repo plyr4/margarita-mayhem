@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1f2e08cf7eab1446a945855941e5492
+guid: 08eb44a01044c534ab2803e464d90f81
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0, y: 0}
   spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tutorial-menu-buttons_0
+      name: start-menu-buttons_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1e46423b143e840a03f54faa0f90e1
-      internalID: 441452816
+      spriteID: b6e45f88a6bc06a45b04bf0b75ba8fe2
+      internalID: 2001677107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_1
+      name: start-menu-buttons_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5afc9abb000f75e49bca24ccb87bcb62
-      internalID: -574704689
+      spriteID: c30b313b5e4c39f4e8ac8f1d09fc1208
+      internalID: 517838863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_2
+      name: start-menu-buttons_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f9b963adf72ec040923fafd13af0552
-      internalID: -1321767072
+      spriteID: bba8d1351dbd6104ea8db78d33d16286
+      internalID: -472168789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_3
+      name: start-menu-buttons_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5de2d19ad27da740a4885ac9f9612a7
-      internalID: 1743325608
+      spriteID: bdbf6fbfc358dd34e845631a7988eb2e
+      internalID: -2102214494
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tutorial-menu-buttons_0: 441452816
-      tutorial-menu-buttons_1: -574704689
-      tutorial-menu-buttons_2: -1321767072
-      tutorial-menu-buttons_3: 1743325608
+      start-menu-buttons_0: 2001677107
+      start-menu-buttons_1: 517838863
+      start-menu-buttons_2: -472168789
+      start-menu-buttons_3: -2102214494
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

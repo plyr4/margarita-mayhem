@@ -11,8 +11,6 @@ public class GStateGameOverRetryIn : GStateBase
         base.OnEnter();
 
         if (_context == null) return;
-        
-        _done = true;
     }
 
     public override void OnExit()

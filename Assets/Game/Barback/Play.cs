@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Play : MonoBehaviour
@@ -8,6 +9,7 @@ public class Play : MonoBehaviour
     private GameEvent _playPause;
     [SerializeField]
     private GameEvent _pausePlay;
+    public float _pausePlayDelay = 0.2f;
 
     public void HandleGameStateChange(IGameEventOpts opts)
     {
@@ -43,7 +45,7 @@ public class Play : MonoBehaviour
         switch (GStateMachineGame.Instance.CurrentState())
         {
             case GStatePause _:
-                _pausePlay.Invoke();
+                DOVirtual.DelayedCall(_pausePlayDelay, () => _pausePlay.Invoke()).SetUpdate(true);
                 break;
             case GStatePlay _:
                 _playPause.Invoke();

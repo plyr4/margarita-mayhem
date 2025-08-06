@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GUIGameOverMenu : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class GUIGameOverMenu : MonoBehaviour
     private GameObject _viewParent;
     public TextMeshPro _text;
     public GameEvent _gameOverRetryEvent;
+    public GameEvent _gameOverInDoneEvent;
     public float _cooldownTime = 0.5f;
     private bool _cooldown;
 
@@ -14,7 +17,9 @@ public class GUIGameOverMenu : MonoBehaviour
     {
         if (GameInput.Instance._menuContinuePressed || GameInput.Instance._menuSubmitPressed)
         {
-            GameOverRetryHandleOnClick();
+            Button button = _viewParent.GetComponentInChildren<Button>();
+            ExecuteEvents.Execute(button.gameObject, new BaseEventData(EventSystem.current),
+                ExecuteEvents.submitHandler);
         }
     }
 
@@ -28,15 +33,19 @@ public class GUIGameOverMenu : MonoBehaviour
                 _viewParent.SetActive(false);
                 break;
             case GStateGameOverIn playGameOverEvent:
-                ScreenTransition.Instance.Close();
-                break;
-            case GStateGameOver playGameOverEvent:
                 _viewParent.SetActive(true);
                 _viewParent.GetComponentInChildren<UnityEngine.UI.Button>()?.Select();
                 SpriteTextWriter.WriteText(_text,
                     $"{((GameOverEventOpts)playGameOverEvent._opts)._dishSink._numWashedDishes}");
+                _gameOverInDoneEvent.Invoke(playGameOverEvent._opts);
+                break;
+            case GStateGameOverRetry _:
+                _viewParent.SetActive(false);
                 break;
             case GStateGameOverRetryIn _:
+                ScreenTransition.Instance.Close();
+                break;
+            case GStatePlayLoad _:
                 _viewParent.SetActive(false);
                 break;
             case GStatePlay _:

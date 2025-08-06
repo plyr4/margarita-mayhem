@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1f2e08cf7eab1446a945855941e5492
+guid: c23fcb5e29e03a549b3d19f8d62fa709
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tutorial-menu-buttons_0
+      name: pause-menu-buttons-retry_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1e46423b143e840a03f54faa0f90e1
-      internalID: 441452816
+      spriteID: 9f2b4c3238c245542ac92d9c76e05815
+      internalID: 839080763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_1
+      name: pause-menu-buttons-retry_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5afc9abb000f75e49bca24ccb87bcb62
-      internalID: -574704689
+      spriteID: 15bb6d6aaac78dd4ba7f76793d71c49f
+      internalID: -272399693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_2
+      name: pause-menu-buttons-retry_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f9b963adf72ec040923fafd13af0552
-      internalID: -1321767072
+      spriteID: 9cf816336ea67dd47893b228f4553599
+      internalID: -2103784897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-menu-buttons_3
+      name: pause-menu-buttons-retry_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5de2d19ad27da740a4885ac9f9612a7
-      internalID: 1743325608
+      spriteID: 7dbc9d6ca9a10ab46980aef33b093ea4
+      internalID: -1621655268
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tutorial-menu-buttons_0: 441452816
-      tutorial-menu-buttons_1: -574704689
-      tutorial-menu-buttons_2: -1321767072
-      tutorial-menu-buttons_3: 1743325608
+      pause-menu-buttons-retry_0: 839080763
+      pause-menu-buttons-retry_1: -272399693
+      pause-menu-buttons-retry_2: -2103784897
+      pause-menu-buttons-retry_3: -1621655268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
