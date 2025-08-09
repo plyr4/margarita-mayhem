@@ -15,11 +15,23 @@ public class ButtonSprite : Graphic
     public Button _button;
     private ColorBlock _colors;
 
+    private Color _color;
+
     protected override void Start()
     {
         base.Start();
         _button = GetComponent<Button>();
         _colors = _button.colors;
+    }
+
+    public void UpdateSprite()
+    {
+        Sprite targetSprite = GetSpriteForColor(_color);
+
+        if (_targetSpriteRenderer.sprite != targetSprite)
+        {
+            _targetSpriteRenderer.sprite = targetSprite;
+        }
     }
 
     public override void CrossFadeColor(Color targetColor, float duration, bool ignoreTimeScale, bool useAlpha)
@@ -33,6 +45,7 @@ public class ButtonSprite : Graphic
         {
             _targetSpriteRenderer.sprite = targetSprite;
         }
+        _color = targetColor;
     }
 
     private Sprite GetSpriteForColor(Color color)

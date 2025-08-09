@@ -85,6 +85,7 @@ public class GUIStartMenu : MonoBehaviour
         _cooldown = true;
         Invoke(nameof(resetCooldown), _cooldownTime);
         OpenTutorial();
+        SoundManager.Instance.PlayButtonConfirm();
     }
 
     private void OpenTutorial()
@@ -134,6 +135,7 @@ public class GUIStartMenu : MonoBehaviour
         _cooldown = true;
         Invoke(nameof(resetCooldown), _cooldownTime);
         CloseTutorial();
+        SoundManager.Instance.PlayButtonConfirm();
     }
 
     private void CloseTutorial()

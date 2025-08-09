@@ -60,7 +60,7 @@ public class GUISettingsMenu : MonoBehaviour
                     .OnComplete(() => { _settingsInDone.Invoke(); })
                     .SetEase(_animationEaseIn);
 
-                _volumeSlider.value = SoundManager.Instance._volume;
+                _volumeSlider.value = SoundManager.Instance._sfxVolume;
                 break;
             case GStateSettingsOut _:
                 if (_menuTween != null) _menuTween.Kill();
