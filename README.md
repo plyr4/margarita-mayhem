@@ -20,15 +20,13 @@ Your job is to keep the bar stocked and the drinks flowing. Keep the bar clean a
 - **WASD/ARROW** keys to pick things up
 - **WASD/ARROW** keys to put things down
 
-![margarita_1.png](img/margarita-mayhem-1.png)
-
 ## Development
 
 ### Tools & Software
 
-- Music and Sfx created using [Sonic Pi](https://sonic-pi.net/).
+- Music and Sfx created using [Sonic Pi](https://sonic-pi.net/)
 - Art created using [Asperite](https://www.aseprite.org/)
-- Animations created using [DOTween (free)](https://dotween.demigiant.com/).
+- Animations created using [DOTween (free)](https://dotween.demigiant.com/)
 
 ## Installation
 
