@@ -17,8 +17,8 @@ public class GStateInit : GStateBase
         InitializeGame();
 
         ScreenTransition.Instance.CloseImmediate();
-        ScreenTransition.Instance.Open(0.25f);
-        
+        ScreenTransition.Instance.Open(2f);
+
         // set max fps to 60
         Application.targetFrameRate = 60;
     }

@@ -14,7 +14,7 @@ public class GStatePlayIn : GStateBase
 
         if (_context == null) return;
 
-        ScreenTransition.Instance.Open(0.5f);
+        ScreenTransition.Instance.Open(2f);
 
         ((GStateMachineGame)_context).HandlePauseResets();
         ((GStateMachineGame)_context).HandleStartResets();
