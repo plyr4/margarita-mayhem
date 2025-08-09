@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Barback</title>
+    <title>Margarita Mayhem</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
 </head>
@@ -37,27 +37,27 @@
             <div id="about">
                 <div class="header">ABOUT Margarita Mayhem</div>
                 <div class="info">
-                    <div class="line">Take control of a barback, a bartender's right-hand.</div>
-                    <div class="line"> It's up to you two to keep the drinks flowing, and the party going!</div>
-                    <div class="line">Restock tequila, refill ice, and hit the dance floor in this 64x64 retro
-                        Tapper/Frogger mashup!
+                    <div class="line">A barback is a bartender's right-hand.</div>
+                    <div class="line"> It's up to you two to keep the drinks flowing, and the party going.</div>
+                    <div class="line">Restock tequila, refill ice and dodge party goers in this 64x64 retro
+                        Tapper/Frogger mashup where you sell as many margaritas as you can before last call.
                     </div>
-                    <div class="line">Don't step on any toes!</div>
+                    <div class="line">Try not to step on any toes!</div>
                 </div>
                 <br/>
             </div>
             <div id="controls">
                 <div class="header">CONTROLS</div>
                 <ul>
-                    <li><u>WASD/ARROW keys</u> to control your character</li>
-                    <li><u>WASD/ARROW keys</u> to pick things up</li>
-                    <li><u>WASD/ARROW keys</u> to put things down</li>
+                    <li><u>WASD or ARROW keys</u> to move</li>
+                    <li><u>WASD or ARROW keys</u> to pick things up</li>
+                    <li><u>WASD or ARROW keys</u> to restock and wash dishes</li>
                 </ul>
             </div>
             <div id="known-issues">
                 <div class="header">KNOWN ISSUES</div>
                 <ul>
-                    <li>No sounds yet</li>
+                    <li>Overlapping sound effects might produce static</li>
                 </ul>
             </div>
         </div>
@@ -120,8 +120,7 @@
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         document.querySelector("#unity-container").outerHTML = `<div class="mobile">Sorry, not supported on mobile devices.<div>Try downloading the <a href="${WINDOWS_BUILD_LINK}" target="_blank">Windows version</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/>! (or the <a
                                 href="${LINUX_BUILD_LINK}"
-                                target="_blank">Linux version</a> <img class="sml-icon"
-                                                                       src="https://static-00.iconduck.com/assets.00/linux-icon-439x512-rnhe78x0.png"/>)</div></div>`;
+                                target="_blank">Linux version</a>)</div></div>`;
     } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
         canvas.style.width = "640px";
@@ -144,7 +143,7 @@
     }
     var warning = `<div><div class="warning-windows">Web demo not working? Try downloading the <a href="${WINDOWS_BUILD_LINK}" target="_blank">Windows</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/> copy! (or <a
                                 href="${LINUX_BUILD_LINK}"
-                                target="_blank">Linux</a> <img class="sml-icon" src="https://static-00.iconduck.com/assets.00/linux-icon-439x512-rnhe78x0.png"/>)</div></div><div class="gh-link"><a href="https://github.com/plyr4" target="_blank">plyr4<img src="https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"/></a></div>`;
+                                target="_blank">Linux</a>)</div></div><div class="gh-link"><a href="https://github.com/plyr4" target="_blank">plyr4<img src="https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"/></a></div>`;
     document.querySelector("#warning-banner").innerHTML = warning;
     document.querySelector("#platform").innerHTML = navigator.userAgent;
 </script>
