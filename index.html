@@ -106,7 +106,7 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "plyr4",
         productName: "margarita-mayhem",
-        productVersion: "df71b00",
+        productVersion: "10338eb",
         showBanner: unityShowBanner,
     };
 
@@ -118,6 +118,8 @@
     // config.matchWebGLToCanvasSize = false;
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        config.devicePixelRatio = 1;
+
         document.querySelector("#unity-container").outerHTML = `<div class="mobile">Sorry, not supported on mobile devices.<div>Try downloading the <a href="https://github.com/plyr4/unity-build-factory/releases/download/plyr4/margarita-mayhem-StandaloneWindows64/margarita-mayhem-StandaloneWindows64.zip" target="_blank">Windows version</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/>! (or the <a
                                 href="https://github.com/plyr4/unity-build-factory/releases/download/plyr4/margarita-mayhem-StandaloneLinux64/margarita-mayhem-StandaloneLinux64.zip"
                                 target="_blank">Linux version</a>)</div></div>`;
@@ -148,5 +150,4 @@
     document.querySelector("#platform").innerHTML = navigator.userAgent;
 </script>
 </body>
-
 </html>
