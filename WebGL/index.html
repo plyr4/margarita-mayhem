@@ -118,6 +118,8 @@
     // config.matchWebGLToCanvasSize = false;
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        config.devicePixelRatio = 1;
+
         document.querySelector("#unity-container").outerHTML = `<div class="mobile">Sorry, not supported on mobile devices.<div>Try downloading the <a href="${WINDOWS_BUILD_LINK}" target="_blank">Windows version</a> <img class="sml-icon" src="https://cdn-icons-png.flaticon.com/512/732/732225.png"/>! (or the <a
                                 href="${LINUX_BUILD_LINK}"
                                 target="_blank">Linux version</a>)</div></div>`;
@@ -148,5 +150,4 @@
     document.querySelector("#platform").innerHTML = navigator.userAgent;
 </script>
 </body>
-
 </html>

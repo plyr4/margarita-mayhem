@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DanceFloor : MonoBehaviour
@@ -22,6 +23,12 @@ public class DanceFloor : MonoBehaviour
     public int _startingNumDancers = 3;
     public int _maxAttempts = 2;
     public int _maxDancers = 16;
+    public TextMeshPro _counterText;
+    
+    public void UpdateCounter()
+    {
+        SpriteTextWriter.WriteText(_counterText, $"{_maxDancers - _dancers.Count + 1}");
+    }
 
     public void Start()
     {
@@ -54,6 +61,8 @@ public class DanceFloor : MonoBehaviour
         UpdateDancers();
 
         _margarita.OnConsumeMargaritaAction += AddDancer;
+        
+        UpdateCounter();
     }
 
     public bool Full()
@@ -266,6 +275,8 @@ public class DanceFloor : MonoBehaviour
         {
             _dancers.Add(dancer);
             dancer.SetPointingSprite(Vector2Int.zero, _moveOpts);
+            
+            UpdateCounter();
         }
     }
 

@@ -2434,7 +2434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _theme: {fileID: 7870119965465880603}
-  _themeVolume: 0.1
+  _themeVolume: 0.075
   _buttonConfirm: {fileID: 1937549492}
   _footStep: {fileID: 243057535}
   _pickupItem: {fileID: 1687078867}
