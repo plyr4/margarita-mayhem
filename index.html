@@ -117,6 +117,9 @@
     // the canvas DOM size and WebGL render target sizes yourself.
     // config.matchWebGLToCanvasSize = false;
 
+    config.matchWebGLToCanvasSize = true;
+    config.devicePixelRatio = 1;
+
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         config.devicePixelRatio = 1;
 
