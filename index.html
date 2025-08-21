@@ -106,9 +106,12 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "plyr4",
         productName: "margarita-mayhem",
-        productVersion: "10338eb",
+        productVersion: "75af1f0",
         showBanner: unityShowBanner,
     };
+
+    config.matchWebGLToCanvasSize = true;
+    config.devicePixelRatio = 1;
 
     // By default Unity keeps WebGL canvas render target size matched with
     // the DOM size of the canvas element (scaled by window.de  vicePixelRatio)
@@ -116,9 +119,6 @@
     // happening inside the engine, and you would instead like to size up
     // the canvas DOM size and WebGL render target sizes yourself.
     // config.matchWebGLToCanvasSize = false;
-
-    config.matchWebGLToCanvasSize = true;
-    config.devicePixelRatio = 1;
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         config.devicePixelRatio = 1;
