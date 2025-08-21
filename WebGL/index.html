@@ -110,6 +110,9 @@
         showBanner: unityShowBanner,
     };
 
+    config.matchWebGLToCanvasSize = true;
+    config.devicePixelRatio = 1;
+
     // By default Unity keeps WebGL canvas render target size matched with
     // the DOM size of the canvas element (scaled by window.de  vicePixelRatio)
     // Set this to false if you want to decouple this synchronization from
