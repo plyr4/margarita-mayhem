@@ -1,5 +1,6 @@
 {
-    "name": "DefaultInputActions",
+    "version": 1,
+    "name": "DefaultInputActions(Nav)",
     "maps": [
         {
             "name": "Player",
