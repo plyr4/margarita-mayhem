@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class GUIPauseMenu : MonoBehaviour
 {
@@ -12,14 +13,14 @@ public class GUIPauseMenu : MonoBehaviour
     public float _cooldownTime = 0.5f;
     private bool _cooldown;
     public float _pausePlayDelay = 0.2f;
-    public SpriteRenderer _image;
+    public Image _image;
     public List<Sprite> _sprites;
     public float _spritesDelay = 0.5f;
     public float _spritesDuration = 1f;
     private Sequence _spriteSequence;
-    public ButtonSprite _muteButtonSprite;
-    public ButtonSprite _mutedButtonSprite;
-    public ButtonSprite _unmutedButtonSprite;
+    public Button _currentMuteButton;
+    public Button _mutedButtonSprite;
+    public Button _unmutedButtonSprite;
 
     public void Start()
     {
@@ -63,14 +64,10 @@ public class GUIPauseMenu : MonoBehaviour
 
     void UpdateMutedSprite(bool muted)
     {
-        ButtonSprite muteStatusButton = !muted ? _mutedButtonSprite : _unmutedButtonSprite;
-        _muteButtonSprite._normalSprite = muteStatusButton._normalSprite;
-        _muteButtonSprite._highlightedSprite = muteStatusButton._highlightedSprite;
-        _muteButtonSprite._selectedSprite = muteStatusButton._selectedSprite;
-        _muteButtonSprite._pressedSprite = muteStatusButton._pressedSprite;
-        _muteButtonSprite._disabledSprite = muteStatusButton._disabledSprite;
-
-        _muteButtonSprite.UpdateSprite();
+        _currentMuteButton = muted ? _mutedButtonSprite : _unmutedButtonSprite;
+        _mutedButtonSprite.gameObject.SetActive(muted);
+        _unmutedButtonSprite.gameObject.SetActive(!muted);
+        _currentMuteButton.gameObject.SetActive(true);
     }
 
     public void HandleGameStateChange(IGameEventOpts opts)
@@ -108,7 +105,7 @@ public class GUIPauseMenu : MonoBehaviour
 
         _viewParent.SetActive(true);
         if (_image == null)
-            _image = _viewParent.GetComponentInChildren<SpriteRenderer>();
+            _image = _viewParent.GetComponentInChildren<Image>();
 
         _image.sprite = _sprites[0];
 

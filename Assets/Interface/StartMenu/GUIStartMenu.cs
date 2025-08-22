@@ -9,6 +9,8 @@ public class GUIStartMenu : MonoBehaviour
     [SerializeField]
     private GameObject _viewParent;
     [SerializeField]
+    private GameObject _worldCanvasParent;
+    [SerializeField]
     private GameObject _buttonsViewParent;
     [SerializeField]
     private GameObject _tutorialViewParent;
@@ -23,7 +25,7 @@ public class GUIStartMenu : MonoBehaviour
     public float _tutorialSpritesDelay = 0.5f;
     public float _tutorialSpritesDuration = 1f;
 
-    private SpriteRenderer _tutorialImage;
+    private Image _tutorialImage;
     private Sequence _spriteSequence;
 
     private void Update()
@@ -58,17 +60,20 @@ public class GUIStartMenu : MonoBehaviour
                 break;
             case GStateStartIn _:
                 _viewParent.SetActive(true);
+                _worldCanvasParent.SetActive(true);
                 _buttonsViewParent.SetActive(true);
                 if (_spriteSequence != null) _spriteSequence.Kill();
                 break;
             case GStateStart _:
                 _viewParent.SetActive(true);
+                _worldCanvasParent.SetActive(true);
                 _buttonsViewParent.SetActive(true);
                 _buttonsViewParent.GetComponentInChildren<UnityEngine.UI.Button>().Select();
                 if (_spriteSequence != null) _spriteSequence.Kill();
                 break;
             case GStatePlayLoad _:
                 _viewParent.SetActive(false);
+                _worldCanvasParent.SetActive(false);
                 _buttonsViewParent.SetActive(false);
                 _tutorialViewParent.SetActive(false);
                 _tutorialButtonsViewParent.SetActive(false);
@@ -92,7 +97,7 @@ public class GUIStartMenu : MonoBehaviour
     {
         _tutorialViewParent.SetActive(true);
         if (_tutorialImage == null)
-            _tutorialImage = _tutorialViewParent.GetComponentInChildren<SpriteRenderer>();
+            _tutorialImage = _tutorialViewParent.GetComponentInChildren<Image>();
 
         _tutorialImage.sprite = _tutorialSprites[0];
 
@@ -141,7 +146,7 @@ public class GUIStartMenu : MonoBehaviour
     private void CloseTutorial()
     {
         if (_tutorialImage == null)
-            _tutorialImage = _tutorialViewParent.GetComponentInChildren<SpriteRenderer>();
+            _tutorialImage = _tutorialViewParent.GetComponentInChildren<Image>();
 
         if (_tutorialSprites != null && _tutorialSprites.Count > 0 && _tutorialImage != null)
         {

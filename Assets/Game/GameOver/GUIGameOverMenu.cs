@@ -7,7 +7,7 @@ public class GUIGameOverMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject _viewParent;
-    public TextMeshPro _text;
+    public TMP_Text _text;
     public GameEvent _gameOverRetryEvent;
     public GameEvent _gameOverInDoneEvent;
     public float _cooldownTime = 0.5f;

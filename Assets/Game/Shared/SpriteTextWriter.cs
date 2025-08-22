@@ -2,7 +2,7 @@ using TMPro;
 
 public static class SpriteTextWriter
 {
-    public static void WriteText(TextMeshPro textMeshPro, string text)
+    public static void WriteText(TMP_Text textMeshPro, string text)
     {
         string spriteText = "";
         foreach (char c in text)

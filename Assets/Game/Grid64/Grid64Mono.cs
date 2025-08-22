@@ -14,8 +14,8 @@ public interface ITile
 
 public class Grid64Mono : MonoBehaviour
 {
-
     public float _worldSize = 5f;
+    public float _screenSize = 640;
     public int _pixelSize = 8;
     public int _columns = 8;
     public int _rows = 8;
@@ -84,6 +84,14 @@ public class Grid64Mono : MonoBehaviour
         return new Vector3(
             -_worldSize + gridPosition.x * 2 * (_worldSize / _pixelSize),
             -_worldSize + gridPosition.y * 2 * (_worldSize / _pixelSize),
+            0f);
+    }
+
+    public Vector3 GridPositionToScreenPosition(Vector2Int gridPosition)
+    {
+        return new Vector3(
+            -_screenSize + gridPosition.x * 2 * (_screenSize / _pixelSize),
+            -_screenSize + gridPosition.y * 2 * (_screenSize / _pixelSize),
             0f);
     }
 
