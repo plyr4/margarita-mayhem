@@ -1,10 +1,10 @@
 ## Margarita Mayhem
 
+Check out the web demo! https://plyr4.itch.io/margarita-mayhem
+
 ![margarita](img/margarita-mayhem-1.png)
 
 Solo-dev submission for [Low Rez Jam 2025](https://itch.io/jam/lowrezjam-2025) built in a single week.
-
-Check out the web demo! https://plyr4.itch.io/margarita-mayhem
 
 ![margarita](img/margarita-mayhem.gif)
 
